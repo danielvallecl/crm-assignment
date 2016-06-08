@@ -1,58 +1,94 @@
 class Contact
+  attr_reader :id
+  attr_accessor :first_name, :last_name, :email, :note
+
+  @@contacts = [ ]
+  @@id = 1000
 
   # This method should initialize the contact's attributes
-  def initialize
+  def initialize(first_name, last_name, email, note)
+    @first_name = first_name
+    @last_name = last_name
+    @email = email
+    @note = note
+    @id = @@id
+
+    @@id += 1
 
   end
 
-  # This method should call the initializer, 
-  # store the newly created contact, and then return it
-  def self.create
-
-  end
-
-  # This method should return all of the existing contacts
   def self.all
-
+    @@contacts
   end
 
-  # This method should accept an id as an argument
-  # and return the contact who has that id
-  def self.find
-
+  def self.find(id)
+    @@contacts.each do |contact|
+      if contact.id == id
+        return contact
+      end
+    end
   end
 
-  # This method should allow you to specify 
-  # 1. which of the contact's attributes you want to update
-  # 2. the new value for that attribute
-  # and then make the appropriate change to the contact
-  def update
-
+  def self.find_by(first_name)
+    @@contacts.each do |contact|
+      if contact.first_name == first_name
+      first_name
+      end
+    end
   end
 
-  # This method should work similarly to the find method above
-  # but it should allow you to search for a contact using attributes other than id
-  # by specifying both the name of the attribute and the value
-  # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
-  def self.find_by
-
+  def self.delete_all #Deletes everything in the Array#
+    @@contacts.clear
   end
 
-  # This method should delete all of the contacts
-  def self.delete_all
-
+  def update(attribute, value) # Update attributes of Contacts#
+    if attribute == "first_name"
+      attribute = value
+    elsif attribute == "last_name"
+      attribute = value
+    elsif attribute == "email"
+      attribute = value
+    elsif attribute == "note"
+      attribute = value
+    end
+    puts value
   end
 
   def full_name
-
+    "#{first_name} #{last_name}"
   end
 
-  # This method should delete the contact
-  # HINT: Check the Array class docs for built-in methods that might be useful here
   def delete
-
+    @@contacts.each do |contact|
+      if contact == self
+        contact.delete
+      end
+    end
   end
 
-  # Feel free to add other methods here, if you need them.
-  
-end
+  # Store the newly created contact, and returns it#
+  def self.create(first_name, last_name, email, note = "N/A")
+    new_contact = new(first_name, last_name, email, note)
+    @@contacts << new_contact
+
+    #Return the Contact created#
+    new_contact
+  end
+
+end #Contact class ends#
+
+#Instantiating Objects#
+
+Contact.create("Daniel", "Valle", "daniel.vallecl@gmail.com", "Admin")
+Contact.create("John", "Smith", "johnsmith@gmail.com", "User")
+Contact.create("Jane", "Doe", "janedoe@gmail.com", "User")
+
+puts Contact.find_by("David").delete
+
+puts Contact.delete_all
+
+daniel = Contact.create("Daniel", "Valle", "daniel.vallecl@gmail.com", "Admin")
+
+daniel.update("first_name", "Jack")
+
+daniel.update("last_name", "Smith")
