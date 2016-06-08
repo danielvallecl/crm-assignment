@@ -43,13 +43,13 @@ class Contact
 
   def update(attribute, value) # Update attributes of Contacts#
     if attribute == "first_name"
-      attribute = value
+      @first_name = value
     elsif attribute == "last_name"
-      attribute = value
+      @last_name = value
     elsif attribute == "email"
-      attribute = value
+      @email = value
     elsif attribute == "note"
-      attribute = value
+      @note = value
     end
     puts value
   end
