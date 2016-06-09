@@ -41,6 +41,10 @@ class Contact
     @@contacts.clear
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def update(attribute, value) # Update attributes of Contacts#
     if attribute == "first_name"
       @first_name = value
@@ -51,11 +55,7 @@ class Contact
     elsif attribute == "note"
       @note = value
     end
-    puts value
-  end
-
-  def full_name
-    "#{first_name} #{last_name}"
+    value
   end
 
   def delete
@@ -71,24 +71,21 @@ class Contact
     new_contact = new(first_name, last_name, email, note)
     @@contacts << new_contact
 
-    #Return the Contact created#
-    new_contact
+    new_contact #Return the Contact created#
   end
 
 end #Contact class ends#
 
 #Instantiating Objects#
-
-Contact.create("Daniel", "Valle", "daniel.vallecl@gmail.com", "Admin")
-Contact.create("John", "Smith", "johnsmith@gmail.com", "User")
-Contact.create("Jane", "Doe", "janedoe@gmail.com", "User")
-
-puts Contact.find_by("David").delete
-
-puts Contact.delete_all
-
+#
 daniel = Contact.create("Daniel", "Valle", "daniel.vallecl@gmail.com", "Admin")
+john = Contact.create("John", "Smith", "johnsmith@gmail.com", "User")
+jane = Contact.create("Jane", "Doe", "janedoe@gmail.com", "User")
 
-daniel.update("first_name", "Jack")
-
-daniel.update("last_name", "Smith")
+# puts Contact.find_by("David").delete
+#
+# daniel = Contact.create("Daniel", "Valle", "daniel.vallecl@gmail.com", "Admin")
+#
+# daniel.update("first_name", "Jack")
+#
+# daniel.update("last_name", "Smith")
