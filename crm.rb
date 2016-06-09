@@ -1,10 +1,4 @@
-require 'sinatra'
 require 'pry'
-
-get '/' do
-  'Main Menu'
-end
-
 require_relative "contact"
 
 class CRM
