@@ -1,6 +1,19 @@
+require 'sinatra'
+require 'pry'
+
+get '/' do
+  'Main Menu'
+end
+
 require_relative "contact"
 
 class CRM
+
+  def initialize
+    Contact.create("Daniel", "Valle", "daniel.vallecl@gmail.com", "Admin")
+    Contact.create("John", "Smith", "johnsmith@gmail.com", "User")
+    Contact.create("Jane", "Doe", "janedoe@gmail.com", "User")
+  end
 
   def main_menu
     while true
@@ -33,7 +46,7 @@ class CRM
     end
   end
 
-  def add_new_contact
+  def add_new_contact #Adds a new Contact#
     print 'Enter First Name: '
     first_name = gets.chomp
 
@@ -51,10 +64,10 @@ class CRM
 
   end
 
-  def modify_existing_contact
+  def modify_existing_contact #Modifies Contacts#
     puts "Which ID do you want to change?"
     contact_to_change = gets.chomp.to_i
-    my_contact = Contact.find(contact_to_change)
+    my_contact = Contact.find(contact_to_change) #Finds the contact to change#
     puts "What would you like to modify?"
     puts "[1] First Name"
     puts "[2] Last Name"
@@ -88,7 +101,10 @@ class CRM
   end
 
   def delete_contact
-
+    puts "What contact would you like to delete? (Type in ID)"
+    id = gets.chomp.to_i
+    contact = Contact.find(id)
+    contact.delete
   end
 
   # This method should accept as an argument an array of contacts
@@ -106,11 +122,7 @@ class CRM
 
   def search_by_attribute
     display_contacts
-
-    # HINT: Make use of the display_contacts method to keep your code DRY
   end
-
-  # Add other methods here, if you need them.
 
 crm = CRM.new
 crm.main_menu

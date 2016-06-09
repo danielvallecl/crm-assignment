@@ -59,11 +59,8 @@ class Contact
   end
 
   def delete
-    @@contacts.each do |contact|
-      if contact == self
-        contact.delete
-      end
-    end
+    puts "Deleted contact"
+    @@contacts.delete(self)
   end
 
   # Store the newly created contact, and returns it#
@@ -78,9 +75,9 @@ end #Contact class ends#
 
 #Instantiating Objects#
 #
-daniel = Contact.create("Daniel", "Valle", "daniel.vallecl@gmail.com", "Admin")
-john = Contact.create("John", "Smith", "johnsmith@gmail.com", "User")
-jane = Contact.create("Jane", "Doe", "janedoe@gmail.com", "User")
+# daniel = Contact.create("Daniel", "Valle", "daniel.vallecl@gmail.com", "Admin")
+# john = Contact.create("John", "Smith", "johnsmith@gmail.com", "User")
+# jane = Contact.create("Jane", "Doe", "janedoe@gmail.com", "User")
 
 # puts Contact.find_by("David").delete
 #
